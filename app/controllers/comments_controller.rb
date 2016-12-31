@@ -110,11 +110,6 @@ class CommentsController < ApplicationController
   def set_comment
     @comment = Comment.find(params[:id])
   rescue
-    if @comment.blank?
-      respond_to do |format|
-        format.html { render nothing: true }
-        format.json { head :no_content }
-      end
-    end
+    respond_to_nothing if @comment.blank?
   end
 end
