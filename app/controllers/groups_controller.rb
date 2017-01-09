@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
       @meetings = @group.meetings.includes(:leaders)
     end
 
+    @leaders = @group.leaders.map { |leader| leader_link(leader) }.to_sentence
     @page_tooltip = t('meetings.new') if @group.led_by?(current_user)
   end
 
